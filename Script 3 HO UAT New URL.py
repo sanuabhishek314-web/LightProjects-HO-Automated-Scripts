@@ -140,14 +140,31 @@ driver.refresh()
 driver.switch_to.default_content()
 
 #Select the CIC Report
-driver.find_element(By.XPATH,"//img[contains(@src,'../img/cic.png')]").click()
+driver.find_element(By.XPATH,"/html/body/div/div/div[1]/div[2]/div[21]/a").click()
 time.sleep(2)
 # Switch to iframe
 WebDriverWait(driver, 10).until(EC.frame_to_be_available_and_switch_to_it((By.ID, "link")))
 
+#select the Dropdown popup
+driver.find_element(By.XPATH,"/html/body/div[4]/div/div/div[1]/h4").click()
+time.sleep(2)
+#click on the dropdown and select the CIC report
+dropdown = wait.until(EC.element_to_be_clickable((By.ID, "select2-reportTypeSelect-container")))
+dropdown.click()
+
+search_box = wait.until(EC.presence_of_element_located((By.XPATH, "//input[@class='select2-search__field']")))
+
+#Select the CIC report from the dropdown
+search_box.send_keys("CIC Report")
+search_box.send_keys(Keys.ENTER)
+print("CIC Report type selected!")
+#click onto the continue button
+driver.find_element(By.ID,"submitReportType").click()
+driver.implicitly_wait(3)
+
 #click on the view Icon
-driver.find_element(By.XPATH,"/html[1]/body[1]/div[3]/div[1]/div[1]/table[1]/tbody[1]/tr[1]/td[9]/button[1]").click()
-time.sleep(3)
+#driver.find_element(By.XPATH,"/html[1]/body[1]/div[3]/div[1]/div[1]/table[1]/tbody[1]/tr[1]/td[9]/button[1]").click()
+#time.sleep(3)
 
 # Handle alert
 #WebDriverWait(driver, 10).until(EC.alert_is_present())
@@ -155,34 +172,42 @@ time.sleep(3)
 #print(alert.text)
 #alert.accept()
 #click on the Popup
-driver.find_element(By.XPATH,"/html/body/div[4]/div/div/div[2]/table/tbody/tr[1]/td[5]").click()
-time.sleep(2)
+#driver.find_element(By.XPATH,"/html/body/div[5]/div/div/div[2]/table/tbody/tr[1]/td[5]").click()
+#time.sleep(2)
 
 
 #in popup click on the download button
-driver.find_element(By.XPATH,"/html/body/div[4]/div/div/div[2]/table/tbody/tr[1]/td[5]/button/i").click()
-driver.implicitly_wait(8)
+#wait = WebDriverWait(driver, 10)
+# Locate and click the download button (just once)
+#downalod=driver.find_element(By.XPATH,"/html/body/div[5]/div/div/div[2]/table/tbody/tr[1]/td[5]/button/i")
+#downalod.click()
+# ⚡ Immediately handle the alert
+#try:
+    #alert = wait.until(EC.alert_is_present())
+    #print("Alert text:", alert.text)
 
-#Alert accept
-WebDriverWait(driver, 11).until(EC.alert_is_present())
-alert = driver.switch_to.alert
-print(alert.text)
-alert.accept()
-time.sleep(3)
+    # Accept alert (OK)
+    #alert.accept()
+    #print("Download confirmed!")
+
+#except Exception as e:
+    #print("No alert appeared:", e)
+
 #click on the CLose ICon
-driver.find_element(By.XPATH,"/html/body/div[4]/div/div/div[1]/button").click()
-driver.implicitly_wait(5)
+#driver.find_element(By.XPATH,"/html/body/div[5]/div/div/div[1]/button").click()
+#driver.implicitly_wait(5)
 
 #click on the Download icon
-driver.find_element(By.XPATH,"/html[1]/body[1]/div[3]/div[1]/div[1]/table[1]/tbody[1]/tr[1]/td[9]/button[2]/i[1]").click()
+driver.find_element(By.XPATH,"//tbody/tr[1]/td[9]/button[2]/i[1]").click()
 #Alert handeling
 WebDriverWait(driver, 11).until(EC.alert_is_present())
 alert = driver.switch_to.alert
 print(alert.text)
 alert.accept()
 time.sleep(2)
+
 #click on the Initiate Process Icon
-driver.find_element(By.XPATH,"/html[1]/body[1]/div[3]/div[1]/div[1]/table[1]/tbody[1]/tr[1]/td[9]/button[4]/i[1]").click()
+driver.find_element(By.XPATH,"/html/body/div[3]/div/div/table/tbody/tr[1]/td[9]/button[4]").click()
 #Alert Accept
 WebDriverWait(driver, 11).until(EC.alert_is_present())
 alert = driver.switch_to.alert
@@ -198,6 +223,72 @@ driver.implicitly_wait(4)
 print("CIC Report is successfully Automated")
 driver.refresh()
 
+#select the Tally Report Again
+driver.find_element(By.XPATH,"/html/body/div/div/div[1]/div[2]/div[21]/a/img").click()
+time.sleep(2)
+# Switch to iframe
+WebDriverWait(driver, 10).until(EC.frame_to_be_available_and_switch_to_it((By.ID, "link")))
+
+#select the Dropdown popup
+driver.find_element(By.XPATH,"/html/body/div[4]/div/div/div[1]/h4").click()
+time.sleep(2)
+#click on the dropdown and select the CIC report
+dropdown = wait.until(EC.element_to_be_clickable((By.ID, "select2-reportTypeSelect-container")))
+dropdown.click()
+
+search_box = wait.until(EC.presence_of_element_located((By.XPATH, "//input[@class='select2-search__field']")))
+
+#Select the CIC report from the dropdown
+search_box.send_keys("Tally Report")
+search_box.send_keys(Keys.ENTER)
+print("Tally Report type selected!")
+#click onto the continue button
+driver.find_element(By.ID,"submitReportType").click()
+driver.implicitly_wait(3)
+#click on the Tally Report sectiom
+driver.find_element(By.XPATH,"/html/body/div[3]/div/div/table/thead/tr/th[9]").click()
+#click on the View icon
+driver.find_element(By.XPATH,"/html/body/div[3]/div/div/table/tbody/tr[1]/td[9]/button[1]").click()
+time.sleep(2)
+#click on the popup
+driver.find_element(By.XPATH,"/html/body/div[5]/div/div/div[1]/h4").click()
+time.sleep(2)
+#click on the Download icon
+driver.find_element(By.XPATH,"/html/body/div[5]/div/div/div[2]/table/tbody/tr/td[5]/button/i").click()
+#alert accept
+WebDriverWait(driver, 11).until(EC.alert_is_present())
+alert = driver.switch_to.alert
+print(alert.text)
+alert.accept()
+time.sleep(2)
+#click on the Close icon in the poup
+driver.find_element(By.XPATH,"/html/body/div[5]/div/div/div[1]/button").click()
+time.sleep(2)
+#click on the Download icon
+driver.find_element(By.XPATH,"/html/body/div[3]/div/div/table/tbody/tr[1]/td[9]/button[2]").click()
+print("Tally data is downloaded")
+#alert accept
+WebDriverWait(driver, 11).until(EC.alert_is_present())
+alert = driver.switch_to.alert
+print(alert.text)
+alert.accept()
+time.sleep(2)
+#click on the Initaite button
+driver.find_element(By.XPATH,"/html/body/div[3]/div/div/table/tbody/tr[1]/td[9]/button[4]/i").click()
+print("Data is being Initiated")
+#alert accept
+WebDriverWait(driver, 11).until(EC.alert_is_present())
+alert = driver.switch_to.alert
+print(alert.text)
+alert.accept()
+time.sleep(2)
+#alert remove
+WebDriverWait(driver, 11).until(EC.alert_is_present())
+alert = driver.switch_to.alert
+print(alert.text)
+alert.accept()
+time.sleep(2)
+driver.refresh()
 
 #select the Cashbook Update module
 driver.find_element(By.XPATH,"/html[1]/body[1]/div[1]/div[1]/div[1]/div[2]/div[10]/a[1]").click()
