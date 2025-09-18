@@ -20,7 +20,9 @@ List of Modules Covered in HO and BM in Automation:
   l. Automated Report (CIC and Tally)
     **BM Dashboard**
  I. Digital Cashbook
- II. BM Sourcing (Add Client Only the Client Part due to OTP validation)
+ II. Client Sourcing (Add Client Only the Client Part due to OTP validation)
+ III.Client Sourcing ( Add Reference Mobile)
+ IV. Branch Performance (Collection Dashboard, BM Dashboard, Cluster and Division Dashboard)
 
 URL UAT HO- https://uat-ho.lightmicrofinance.com/index.php
 URL UAT BM- https://uat-bm.lightmicrofinance.com/
