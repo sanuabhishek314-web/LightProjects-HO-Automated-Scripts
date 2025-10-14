@@ -71,6 +71,64 @@ time.sleep(6)
 #click on the clients 1st name
 driver.find_element(By.ID,"client_fname").click()
 driver.find_element(By.ID,"client_fname").send_keys("Santi")
+#Scroll down to the Client KYC section
+scroll_pause_time = 1  # Pause time between scrolls
+scroll_height = driver.execute_script("return document.body.scrollHeight")
+
+current_position = 0
+increment = 50  # Number of pixels to scroll each time
+
+while current_position < scroll_height:
+    driver.execute_script(f"window.scrollTo(0, {current_position});")
+    time.sleep(scroll_pause_time)
+    current_position += increment
+    scroll_height = driver.execute_script("return document.body.scrollHeight")
+#select the Upload icon
+driver.find_element(By.XPATH,"/html/body/div/div/section/div[1]/div[2]/div/form/div[8]/div[5]/input").click()
+time.sleep(3)
+#click on the Primary KYC popup
+driver.find_element(By.XPATH,"/html/body/div[1]/div/section/div[3]/div/div/div[2]/div/div/div/div[1]").click()
+#Select the Front KYC upload of client
+wait = WebDriverWait(driver, 10)
+file_input = wait.until(EC.presence_of_element_located((By.ID, "fileInputAadhaarFront")))
+# Make the input element visible
+driver.execute_script("arguments[0].style.display = 'block';", file_input)
+driver.execute_script("arguments[0].style.visibility = 'visible';", file_input)
+driver.execute_script("arguments[0].style.opacity = '1';", file_input)
+# Send the file path directly to the input element
+file_input.send_keys(r"D:\Images_Test\Edit KYC Image upload\KYC image\aadhaar upload01.jpeg")
+# Just to observe the preview update
+print("Aadhaar front image is selected successfully")
+time.sleep(3)
+#Select the Back KYC upload of client
+wait = WebDriverWait(driver, 10)
+file_input = wait.until(EC.presence_of_element_located((By.ID, "fileInputAadhaarBack")))
+# Make the input element visible
+driver.execute_script("arguments[0].style.display = 'block';", file_input)
+driver.execute_script("arguments[0].style.visibility = 'visible';", file_input)
+driver.execute_script("arguments[0].style.opacity = '1';", file_input)
+# Send the file path directly to the input element
+file_input.send_keys(r"D:\Images_Test\Edit KYC Image upload\KYC image\aadhaar upload02.jpg")
+# Just to observe the preview update
+print("Aadhaar Back image is selected successfully")
+time.sleep(3)
+#click on the upload button
+driver.find_element(By.XPATH,"/html/body/div[1]/div/section/div[3]/div/div/div[2]/div/div/div/div[2]/form/input[6]").click()
+driver.implicitly_wait(8)
+print("Addhar data is being masked successfully")
+#clickk on the popup
+driver.find_element(By.XPATH,"/html/body/div[2]/div[2]/div/div/div/div/div/div/div/div[2]").click()
+time.sleep(2)
+#click on the close icon
+driver.find_element(By.XPATH,"/html/body/div[2]/div[2]/div/div/div/div/div/div/div/div[4]/button").click()
+time.sleep(4)
+#click on the Front Image Button
+driver.find_element(By.ID,"get_front_image").click()
+time.sleep(5)
+#click on the Back Image Button
+driver.find_element(By.ID,"get_back_image").click()
+time.sleep(8)
+
 #scroll down to check further
 scroll_pause_time = 1  # Pause time between scrolls
 scroll_height = driver.execute_script("return document.body.scrollHeight")
